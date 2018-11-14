@@ -7,7 +7,8 @@ from config import *
 
 def main():
 
-    df = pd.read_csv(csv_url)
+    tp = pd.read_csv(csv_url, iterator=True, chunksize=1000)
+    df = pd.concat(tp, ignore_index=True)
 
     df_populate_by_zipcode = pd.read_csv(census_population_by_zipcode)
 
